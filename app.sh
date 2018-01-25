@@ -2,5 +2,6 @@ export API_ENDPOINT=8000
 export DB=8081
 export DB_SOURCE=memory
 export TOKEN_KEY=AdmIn12@rubel
-export MOLTIN_CLIENT_SECRET=tIHDMP0YfJ0Ibyq0gejQ9yzCc7k871YtMks300yZ4p
+export DATA_SOURCE=elasticsearch
+export ES_ENDPOINT=localhost:9200
 nodemon app.js

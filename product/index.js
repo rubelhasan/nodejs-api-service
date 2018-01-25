@@ -1,6 +1,8 @@
 const express = require('express')
 const Router = express.Router()
 const Auth = require('../lib/auth')
+const Container = require('../ioc.js').Search()
+const es = Container.resolve('search')
 
 Router.use((req, res, next) => {
   Auth.isAuthenticated(req, res, next)
@@ -11,7 +13,8 @@ Router.get('/product/add', function (req, res) {
 })
 
 Router.get('/product/list', function (req, res) {
-  res.send('product list')
+  const data =  es.find()
+  res.send(data)
 })
 
 Router.get('/product/update', function (req, res) {
