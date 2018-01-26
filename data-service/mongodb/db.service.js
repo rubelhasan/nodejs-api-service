@@ -1,4 +1,5 @@
 const ProductModel = require('./model/product')
+const CategoryModel = require('./model/category')
 
 class db {
   addContent (item) {
@@ -12,14 +13,59 @@ class db {
       })
     })
   }
+  addCategory (item) {
+    return new Promise((resolve, reject) => {
+      const category = new CategoryModel(item)
+      category.save((err, res) => {
+        if (err) {
+          resolve('error')
+        }
+        resolve(res)
+      })
+    })
+  }
   getContent () {
-    return 'Get Content'
+    return new Promise((resolve, reject) => {
+      ProductModel.find({}, (err, res) => {
+        if (err) {
+          resolve('error')
+        }
+        resolve(res)
+      })
+    })
+  }
+  getCategory () {
+    return new Promise((resolve, reject) => {
+      CategoryModel.find({}, (err, res) => {
+        if (err) {
+          resolve('error')
+        }
+        resolve(res)
+      })
+    })
   }
   updateContent () {
     return 'Update Content '
   }
-  deleteContent () {
-    return 'Delete Content'
+  deleteContent (id) {
+    return new Promise((resolve, reject) => {
+      ProductModel.remove({_id: id}, (err) => {
+        if (err) {
+          resolve('error')
+        }
+        resolve('done')
+      })
+    })
+  }
+  deleteCategory (id) {
+    return new Promise((resolve, reject) => {
+      CategoryModel.remove({_id: id}, (err) => {
+        if (err) {
+          resolve('error')
+        }
+        resolve('done')
+      })
+    })
   }
   _self () {
 

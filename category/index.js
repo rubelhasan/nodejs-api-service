@@ -13,25 +13,25 @@ Router.use((req, res, next) => {
   Auth.isAuthenticated(req, res, next)
 })
 
-Router.post('/product/add', function (req, res) {
-  dataModel.addContent(req.body).then((result) => {
+Router.post('/category/add', function (req, res) {
+  dataModel.addCategory(req.body).then((result) => {
     res.send(result)
   })
 })
 
-Router.get('/product/list', function (req, res) {
-  dataModel.getContent().then((result) => {
+Router.get('/category/list', function (req, res) {
+  dataModel.getCategory().then((result) => {
     res.send(result)
   })
 })
 
-Router.get('/product/update', function (req, res) {
+Router.get('/category/update', function (req, res) {
   const data = dataModel.updateContent()
   res.send(data)
 })
 
-Router.get('/product/delete/:id', function (req, res) {
-  dataModel.deleteContent(req.params.id).then((result) => {
+Router.get('/category/delete/:id', function (req, res) {
+  dataModel.deleteCategory(req.params.id).then((result) => {
     res.send(result)
   })
 })
