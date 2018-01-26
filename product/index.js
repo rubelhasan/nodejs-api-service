@@ -3,15 +3,20 @@ const Router = express.Router()
 const Auth = require('../lib/auth')
 const Container = require('../ioc.js').Search()
 const dataModel = Container.resolve('search')
-
+const item = {
+  name: 'Simsong Mobile',
+  description: 'Awesome new 70G 21',
+  quantity: 99,
+  price: 1000
+}
 Router.use((req, res, next) => {
   Auth.isAuthenticated(req, res, next)
 })
 
 Router.get('/product/add', function (req, res) {
-  const data = dataModel.addContent()
-
-  res.send('product add')
+  dataModel.addContent(item).then((result)=>{
+    res.send(result)
+  })
 })
 
 Router.get('/product/list', function (req, res) {
