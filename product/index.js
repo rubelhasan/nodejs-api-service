@@ -10,6 +10,8 @@ const item = {
   price: 1000
 }
 Router.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   Auth.isAuthenticated(req, res, next)
 })
 
