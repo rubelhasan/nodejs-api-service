@@ -2,20 +2,20 @@ const express = require('express')
 const Router = express.Router()
 const Auth = require('../lib/auth')
 const Container = require('../ioc.js').Search()
-const dataModel = Container.resolve('search')
+const {UserActions} = Container.resolve('db').getActions()
 const userObj = {
   name: 'Hasan',
-  username: 'hasann@gmail.com',
+  username: 'hasan@gmail.com',
   password: 'hasan',
   admin: 1
 }
 const userInfo = {
-  username: 'hasann@gmail.coms',
+  username: 'hasan@gmail.com',
   password: 'hasan'
 }
 
 Router.get('/login', (req, res) => {
-  dataModel.findUser(userInfo).then((result) => {
+  UserActions.findUser(userInfo).then((result) => {
     if (result) {
       var token = Auth.getAuthToken(userInfo.username)
       res.send(token)
@@ -30,7 +30,7 @@ Router.get('/logout', (req, res) => {
 })
 
 Router.get('/registration', (req, res) => {
-  dataModel.addUser(userObj).then((result) => {
+  UserActions.addUser(userObj).then((result) => {
     res.send(result)
   })
 })
