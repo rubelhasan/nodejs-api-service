@@ -2,7 +2,7 @@ const express = require('express')
 const Router = express.Router()
 const Auth = require('../lib/auth')
 const Container = require('../ioc.js').Search()
-const dataModel = Container.resolve('search')
+const {ProductActions} = Container.resolve('db').getActions()
 const item = {
   name: 'Simsong Mobile',
   description: 'Awesome new 70G 21',
@@ -16,24 +16,24 @@ Router.use((req, res, next) => {
 })
 
 Router.post('/product/add', function (req, res) {
-  dataModel.addContent(req.body).then((result) => {
+  ProductActions.addContent(req.body).then((result) => {
     res.send(result)
   })
 })
 
 Router.get('/product/list', function (req, res) {
-  dataModel.getContent().then((result) => {
+  ProductActions.getContent().then((result) => {
     res.send(result)
   })
 })
 
 Router.get('/product/update', function (req, res) {
-  const data = dataModel.updateContent()
+  const data = ProductActions.updateContent()
   res.send(data)
 })
 
 Router.get('/product/delete/:id', function (req, res) {
-  dataModel.deleteContent(req.params.id).then((result) => {
+  ProductActions.deleteContent(req.params.id).then((result) => {
     res.send(result)
   })
 })
