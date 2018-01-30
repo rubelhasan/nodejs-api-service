@@ -1,3 +1,5 @@
+I am developing an e-commerce platform using nodejs+elasticsearch+mongodb+react+redux. For image loading, I am using CDN (cloudinary) and for a primary database, I am using mongodb(only for writing purpose). My back-end api using elasticsearch to serve the API response. For back-end, I am following microservice architecture like api-service, email-service, message-service etc.
+
 # nodejs-api-service
 Building a RESTful API in Node and Express with Elasticsearch and Mongodb
 -----
